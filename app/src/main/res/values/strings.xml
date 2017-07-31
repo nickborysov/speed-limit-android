@@ -24,4 +24,5 @@
     <string name="update_radius">Update radius</string>
     <string name="way_id_text">Way Id:</string>
     <string name="updated_text">Updated:</string>
+    <string name="way_name_text">Way name:</string>
 </resources>
