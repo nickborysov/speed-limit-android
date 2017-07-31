@@ -92,6 +92,7 @@ abstract public class SpeedLimitFragment extends Fragment {
             @Nullable String value,
             @Nullable String wayId,
             @Nullable String wayName) {
+        setSpeedValue(value);
         mWayIdTextView.setText(wayId != null ? wayId : "");
         mWayNameTextView.setText(wayName != null ? wayName : "");
     }
