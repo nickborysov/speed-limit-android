@@ -67,6 +67,7 @@ public class OverpassServiceRequest {
                 .append("; (")
                 .append("way[highway=\"tertiary\"]").append(coordinates)
                 .append("way[highway=\"motorway\"]").append(coordinates)
+                .append("way[highway=\"motorway_link\"]").append(coordinates)
                 .append("way[highway=\"primary\"]").append(coordinates)
                 .append("way[highway=\"secondary\"]").append(coordinates)
                 .append("way[highway=\"unclassified\"]").append(coordinates)
