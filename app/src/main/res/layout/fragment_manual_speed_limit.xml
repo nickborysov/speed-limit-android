@@ -1,0 +1,116 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/main_content_offset"
+        tools:context="com.engineering.idea.speedlimitapp.presentation_layer.speed_limit_fragments.ManualSpeedLimitFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/speed_layout_height"
+            android:layout_marginBottom="@dimen/speed_layout_offset">
+
+            <TextView
+                android:id="@+id/manual_speed_title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/curr_speed_limit_text"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/speed_title_text_size" />
+
+            <TextView
+                android:id="@+id/manual_speed_value_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="@dimen/speed_value_offset_bottom"
+                android:paddingTop="@dimen/speed_value_offset_top"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/speed_value_text_size"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <TextView
+                android:id="@+id/manual_speed_dimension_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/speed_dimension_text"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/speed_dimension_text_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/way_id_text"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/title_info_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/manual_speed_way_id_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/title_info_text_size" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/manual_speed_lat_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ems="10"
+            android:hint="@string/latitude_hint_text"
+            android:inputType="numberDecimal|numberSigned"
+            android:textColor="@color/text_color" />
+
+        <EditText
+            android:id="@+id/manual_speed_lon_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ems="10"
+            android:hint="@string/longitude_hint_text"
+            android:inputType="numberDecimal|numberSigned"
+            android:textColor="@color/text_color" />
+
+        <EditText
+            android:id="@+id/manual_speed_osm_radius_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/osm_radius_hint_text"
+            android:inputType="numberDecimal"
+            android:textColor="@color/text_color" />
+
+        <Button
+            android:id="@+id/manual_check_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/check_button_text" />
+    </LinearLayout>
+</ScrollView>

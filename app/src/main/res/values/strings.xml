@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SpeedLimitApp</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="curr_speed_limit_text">current speed limit</string>
+    <string name="auto_speed_limit_text">auto</string>
+    <string name="manual_speed_limit_text">manual</string>
+    <string name="not_detected_text">Not detected</string>
+    <string name="gps_activation_text">GPS activation</string>
+    <string name="latitude_text">latitude:</string>
+    <string name="longitude_text">longitude:</string>
+    <string name="latitude_hint_text">latitude</string>
+    <string name="longitude_hint_text">longitude</string>
+    <string name="osm_radius_hint_text">OSM radius</string>
+    <string name="latlng_value_text">%1$s %2$s</string>
+    <string name="check_button_text">check</string>
+    <string name="speed_dimension_text">mph</string>
+    <string name="wrong_input_radius">Wrong input radius. Radius must be a number. Try again, please</string>
+    <string name="wrong_input_lat">Wrong input latitude. Latitude must be a number. Try again, please</string>
+    <string name="wrong_input_lon">Wrong input longitude. Longitude must be a number. Try again, please</string>
+    <string name="location_not_enabled">GPS is not enabled</string>
+    <string name="location_permission_not_granted">Location permission is not granted</string>
+    <string name="network_not_enabled">Network is not enabled</string>
+    <string name="enable">Open settings</string>
+    <string name="update_radius">Update radius</string>
+    <string name="way_id_text">Way Id:</string>
+    <string name="updated_text">Updated:</string>
+</resources>

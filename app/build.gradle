@@ -1,0 +1,104 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.22.1'
+//        classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+//apply plugin: 'com.squareup.sqldelight'
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.mvpngn.speedlimitapp"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [appName: "@string/app_name"]
+
+        lintOptions {
+            disable 'MissingTranslation'
+            disable 'ExtraTranslation'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//
+//            if (project.hasProperty("RELEASE_STORE_FILE")) {
+//                signingConfig signingConfigs.release
+//            } else {
+//                signingConfig signingConfigs.debug
+//            }
+        }
+
+        debug {
+            minifyEnabled true
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+//            testCoverageEnabled false
+//            manifestPlaceholders = [appName: "SpeedLimitApp DEBUG"]
+            ext.enableCrashlytics = false
+        }
+    }
+
+    if (project.hasProperty("RELEASE_STORE_FILE")) {
+        signingConfigs {
+            release {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS_VELOCIRAPTOR
+                keyPassword RELEASE_KEY_PASSWORD_VELOCIRAPTOR
+            }
+        }
+    }
+
+
+    productFlavors {
+        full {
+            applicationIdSuffix ".full"
+            versionName = android.defaultConfig.versionName + "-aa"
+            manifestPlaceholders = [appName: "Velociraptor AA"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:design:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.7.0'
+    compile 'com.squareup.okio:okio:1.11.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.google.android.gms:play-services:7.8.0'
+    compile 'com.google.android.gms:play-services-location:9.2.1'
+    compile 'com.google.android.gms:play-services-maps:9.2.1'
+    compile 'com.google.android.gms:play-services:11.0.0'
+    compile 'com.android.support:support-v4:26.+'
+    testCompile 'junit:junit:4.12'
+}

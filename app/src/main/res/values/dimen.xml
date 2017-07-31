@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_content_offset">10dp</dimen>
+    <dimen name="speed_value_offset_top">0dp</dimen>
+    <dimen name="speed_value_offset_bottom">60dp</dimen>
+    <dimen name="speed_layout_height">234dp</dimen>
+    <dimen name="speed_title_text_size">24sp</dimen>
+    <dimen name="speed_value_text_size">160sp</dimen>
+    <dimen name="speed_dimension_text_size">50sp</dimen>
+    <dimen name="title_info_text_size">24sp</dimen>
+    <dimen name="speed_layout_offset">10dp</dimen>
+
+</resources>
