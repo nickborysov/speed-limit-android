@@ -65,7 +65,7 @@ public class OverpassServiceRequest {
         query.append("[out:json]")
                 .append("[timeout:25]")
                 .append("; (")
-                .append("way[!railway][!building][highway!=\"pedestrian\"][highway!=\"footway\"]")
+                .append("way[!railway][!building][highway!=\"pedestrian\"][highway!=\"footway\"][!office]")
 //                .append("node[\"maxspeed\"]")
 //                .append(coordinates)
 //                .append("way[\"maxspeed\"]")
