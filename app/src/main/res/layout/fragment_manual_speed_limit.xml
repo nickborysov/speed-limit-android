@@ -47,7 +47,8 @@
                 android:text="@string/speed_dimension_text"
                 android:textAlignment="center"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/speed_dimension_text_size" />
+                android:textSize="@dimen/speed_dimension_text_size"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <LinearLayout

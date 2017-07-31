@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">SpeedLimitApp</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="curr_speed_limit_text">current speed limit</string>
     <string name="auto_speed_limit_text">auto</string>
     <string name="manual_speed_limit_text">manual</string>
     <string name="not_detected_text">Not detected</string>
     <string name="gps_activation_text">GPS activation</string>
-    <string name="latitude_text">latitude:</string>
-    <string name="longitude_text">longitude:</string>
+    <string name="latitude_text">Latitude:</string>
+    <string name="longitude_text">Longitude:</string>
     <string name="latitude_hint_text">latitude</string>
     <string name="longitude_hint_text">longitude</string>
     <string name="osm_radius_hint_text">OSM radius</string>
