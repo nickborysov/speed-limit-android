@@ -65,13 +65,14 @@ public class OverpassServiceRequest {
         query.append("[out:json]")
                 .append("[timeout:25]")
                 .append("; (")
-                .append("way[!railway][!building][highway!=\"pedestrian\"][highway!=\"footway\"][!office]")
-//                .append("node[\"maxspeed\"]")
-//                .append(coordinates)
-//                .append("way[\"maxspeed\"]")
-//                .append(coordinates)
-//                .append("relation[\"maxspeed\"]")
-                .append(coordinates)
+                .append("way[highway=\"tertiary\"]").append(coordinates)
+                .append("way[highway=\"motorway\"]").append(coordinates)
+                .append("way[highway=\"primary\"]").append(coordinates)
+                .append("way[highway=\"secondary\"]").append(coordinates)
+                .append("way[highway=\"unclassified\"]").append(coordinates)
+                .append("way[highway=\"residential\"]").append(coordinates)
+                .append("way[highway=\"service\"]").append(coordinates)
+                .append("way[highway=\"living_street\"]").append(coordinates)
                 .append("); out; >; out skel qt;");
         return query.toString();
     }
