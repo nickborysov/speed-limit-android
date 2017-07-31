@@ -176,9 +176,9 @@ public class OverpassDataSource {
         request.resumeWithCompletionHandler(new OverpassServiceRequest.CompletionHandler() {
             @Override
             public void completionHandler(OverpassQueryResult result) {
+                mNodes.clear();
+                mWays.clear();
                 if (result.elements != null && result.elements.size() > 0) {
-                    mNodes.clear();
-                    mWays.clear();
                     for (OverpassQueryResult.Element element : result.elements) {
                         switch (element.type) {
                             case "node":
@@ -209,6 +209,8 @@ public class OverpassDataSource {
 
             @Override
             public void completionHandlerWithError(String error) {
+                mNodes.clear();
+                mWays.clear();
                 Log.d(SpeedLimitApp.APP_NAME,
                         "Loaded with error: " + error);
                 setDefaultsLatLng();

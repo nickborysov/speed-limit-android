@@ -140,8 +140,6 @@
             android:id="@+id/manual_check_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:text="@string/check_button_text" />
     </LinearLayout>
 </ScrollView>

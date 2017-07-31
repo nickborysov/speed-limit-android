@@ -44,7 +44,7 @@ public class ManualSpeedLimitFragment extends SpeedLimitFragment {
         checkButton.requestFocus();
         setSpeedValueNotDetected();
 
-        setLatLng(49.9895503389853d, 36.25069940288926d);
+        setLatLng(49.9896234d, 36.250744d);
     }
 
     public void setOnCheckButtonClickListener(View.OnClickListener onCheckButtonClickListener) {
