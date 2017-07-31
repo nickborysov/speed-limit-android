@@ -31,6 +31,7 @@ abstract public class SpeedLimitFragment extends Fragment {
     protected TextView mLatitudeTextView;
     protected TextView mLongitudeTextView;
     protected TextView mWayIdTextView;
+    protected TextView mWayNameTextView;
     protected TextView mUpdateTimeTextView;
 
     @Override
@@ -89,22 +90,22 @@ abstract public class SpeedLimitFragment extends Fragment {
 
     protected void setSpeedValueWithInfo(
             @Nullable String value,
-            @Nullable String nodeId) {
-        if (setSpeedValue(value)) {
-            mWayIdTextView.setText(nodeId);
-        }
+            @Nullable String wayId,
+            @Nullable String wayName) {
+        mWayIdTextView.setText(wayId != null ? wayId : "");
+        mWayNameTextView.setText(wayName != null ? wayName : "");
     }
 
     protected void setSpeedValueWithInfo(
             @Nullable String value,
-            @Nullable String nodeId,
+            @Nullable String wayId,
+            @Nullable String wayName,
             @Nullable String updateTime) {
-        if (setSpeedValue(value)) {
-            mWayIdTextView.setText(nodeId);
-            mUpdateTimeTextView.setText(updateTime);
-        }
+        setSpeedValue(value);
+        mWayIdTextView.setText(wayId != null ? wayId : "");
+        mWayNameTextView.setText(wayName != null ? wayName : "");
+        mUpdateTimeTextView.setText(updateTime != null ? updateTime : "");
     }
-
 
     public float getOsmRadius() {
         float radius = DEFAULT_RADIUS;
@@ -121,6 +122,11 @@ abstract public class SpeedLimitFragment extends Fragment {
         this.mLongitude = longitude;
         mLatitudeTextView.setText(String.format(Locale.US, "%.14f", mLatitude));
         mLongitudeTextView.setText(String.format(Locale.US, "%.14f", mLongitude));
+    }
+
+    public void clearInfo() {
+        mWayIdTextView.setText("");
+        mWayNameTextView.setText("");
     }
 
     public double getLat() {

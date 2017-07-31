@@ -36,6 +36,7 @@ public class AutoSpeedLimitFragment extends SpeedLimitFragment {
         mOsmRadiusEditText = view.findViewById(R.id.auto_speed_osm_radius_edit_text);
         mUpdateRadiusButton = view.findViewById(R.id.auto_speed_update_radius);
         mWayIdTextView = view.findViewById(R.id.auto_speed_way_id_text_view);
+        mWayNameTextView = view.findViewById(R.id.auto_speed_way_name_text_view);
         mUpdateTimeTextView = view.findViewById(R.id.auto_speed_updated_text_view);
         if (mOnUpdateRadiusListener != null) {
             mUpdateRadiusButton.setOnClickListener(mOnUpdateRadiusListener);
@@ -49,7 +50,7 @@ public class AutoSpeedLimitFragment extends SpeedLimitFragment {
     }
 
     @Override
-    public void setSpeedValueWithInfo(@Nullable String value, @Nullable String nodeId, @Nullable String updateTime) {
-        super.setSpeedValueWithInfo(value, nodeId, updateTime);
+    public void setSpeedValueWithInfo(@Nullable String value, @Nullable String wayId, @Nullable String wayName, @Nullable String updateTime) {
+        super.setSpeedValueWithInfo(value, wayId, wayName, updateTime);
     }
 }

@@ -48,19 +48,22 @@ public class MainActivity extends AppCompatActivity {
                     public void maxSpeedDetected(@Nullable String speed,
                                                  @Nullable String nodeId,
                                                  @Nullable String wayId,
+                                                 @Nullable String wayName,
                                                  float distance) {
                         switch (mTabLayout.getSelectedTabPosition()) {
                             case 0:
                                 mAutoSpeedLimitFragment.setSpeedValueWithInfo(
                                         speed,
                                         wayId,
+                                        wayName,
                                         DateFormat.getTimeInstance()
                                                 .format(Calendar.getInstance().getTime()));
                                 break;
                             case 1:
                                 mManualSpeedLimitFragment.setSpeedValueWithInfo(
                                         speed,
-                                        wayId);
+                                        wayId,
+                                        wayName);
                                 break;
                         }
                     }
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         mManualSpeedLimitFragment.hideKeyboard();
                         view.requestFocus();
+                        mManualSpeedLimitFragment.clearInfo();
                         if (new SystemServicesHelper(MainActivity.this).checkNetwork()) {
                             mOverpassDataSource.setRadius(mManualSpeedLimitFragment.getOsmRadius());
                             mOverpassDataSource.searchNearestMaxSpeed(
@@ -167,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            if (mAutoSpeedLimitFragment.getTag().equals(AutoSpeedLimitFragment.TAG)) {
+            if (mAutoSpeedLimitFragment != null &&
+                    mAutoSpeedLimitFragment.getTag().equals(AutoSpeedLimitFragment.TAG)) {
                 Log.d(SpeedLimitApp.APP_NAME,
                         "Current location: " + location.getLatitude() + " " + location.getLongitude());
                 mAutoSpeedLimitFragment.setLatLng(location.getLatitude(), location.getLongitude());

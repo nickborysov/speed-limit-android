@@ -1,14 +1,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context="com.mvpngn.speedlimitapp.presentation.fragments.ManualSpeedLimitFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/main_content_offset"
-        tools:context="com.engineering.idea.speedlimitapp.presentation_layer.speed_limit_fragments.ManualSpeedLimitFragment">
+        android:padding="@dimen/main_content_offset">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -56,51 +56,55 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="@string/way_id_text"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/title_info_text_size"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/manual_speed_way_id_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:paddingStart="10dp"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/title_info_text_size" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="@string/way_id_text"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_info_text_size"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="@string/way_name_text"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_info_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="@string/way_name_text"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/title_info_text_size"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/manual_speed_way_name_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:maxLines="1"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingStart="10dp"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/title_info_text_size" />
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:id="@+id/manual_speed_way_id_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_info_text_size" />
+
+                <TextView
+                    android:id="@+id/manual_speed_way_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_info_text_size" />
+            </LinearLayout>
         </LinearLayout>
 
         <EditText

@@ -84,6 +84,8 @@ public class OverpassQueryResult {
             public String nameEn;
 
         }
+
+        public List<Element> ways;
     }
 }
 

@@ -2,9 +2,9 @@ package com.mvpngn.speedlimitapp.data;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.mvpngn.speedlimitapp.SpeedLimitApp;
 import com.mvpngn.speedlimitapp.utils.LatLngHelper;
-import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.util.Locale;
 
@@ -65,11 +65,12 @@ public class OverpassServiceRequest {
         query.append("[out:json]")
                 .append("[timeout:25]")
                 .append("; (")
-                .append("node[\"maxspeed\"]")
-                .append(coordinates)
-                .append("way[\"maxspeed\"]")
-                .append(coordinates)
-                .append("relation[\"maxspeed\"]")
+                .append("way[!railway][!building][highway!=\"pedestrian\"][highway!=\"footway\"]")
+//                .append("node[\"maxspeed\"]")
+//                .append(coordinates)
+//                .append("way[\"maxspeed\"]")
+//                .append(coordinates)
+//                .append("relation[\"maxspeed\"]")
                 .append(coordinates)
                 .append("); out; >; out skel qt;");
         return query.toString();
