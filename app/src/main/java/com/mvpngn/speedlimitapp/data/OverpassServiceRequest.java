@@ -74,6 +74,7 @@ public class OverpassServiceRequest {
                 .append("way[highway=\"residential\"]").append(coordinates)
                 .append("way[highway=\"service\"]").append(coordinates)
                 .append("way[highway=\"living_street\"]").append(coordinates)
+                .append("way[highway=\"trunk\"]").append(coordinates)
                 .append("); out; >; out skel qt;");
         return query.toString();
     }
