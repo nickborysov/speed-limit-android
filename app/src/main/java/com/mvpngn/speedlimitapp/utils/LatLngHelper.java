@@ -35,4 +35,23 @@ public class LatLngHelper {
         double meters = Math.sqrt(Math.pow(metersLat, 2) + Math.pow(metersLng, 2));
         return (float) meters;
     }
+
+    public static float getDistanceToLine(
+            double currentLat,
+            double currentLng,
+            double pointLat1,
+            double pointLng1,
+            double pointLat2,
+            double pointLng2) {
+
+        if (pointLat1 == pointLat2 && pointLng1 == pointLng2) {
+            return 0f;
+        }
+        double meters = ((pointLng1 - pointLng2) * currentLat + (pointLat2 - pointLat1) * currentLng +
+                (pointLat1 * pointLng2 - pointLat2 * pointLng1)) /
+                Math.sqrt(Math.pow(pointLat2 - pointLat1, 2) + Math.pow(pointLng2 - pointLng1, 2));
+
+        return (float) Math.abs(meters);
+
+    }
 }

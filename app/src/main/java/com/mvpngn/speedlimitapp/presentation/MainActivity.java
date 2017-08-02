@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.mvpngn.speedlimitapp.R;
 import com.mvpngn.speedlimitapp.SpeedLimitApp;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mAutoSpeedLimitFragment.hideKeyboard();
-                        view.requestFocus();
+                        ((ViewGroup)view.getParent()).requestFocus();
                         mAutoSpeedLimitFragment.hideKeyboard();
                         mOverpassDataSource.setRadius(mAutoSpeedLimitFragment.getOsmRadius());
                     }
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mManualSpeedLimitFragment.hideKeyboard();
-                        view.requestFocus();
+                        ((ViewGroup)view.getParent()).requestFocus();
                         mManualSpeedLimitFragment.clearInfo();
                         if (new SystemServicesHelper(MainActivity.this).checkNetwork()) {
                             mOverpassDataSource.setRadius(mManualSpeedLimitFragment.getOsmRadius());

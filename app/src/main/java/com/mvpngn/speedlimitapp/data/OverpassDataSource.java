@@ -87,7 +87,7 @@ public class OverpassDataSource {
             }
         }
         if (nearestNode != null) {
-            OverpassQueryResult.Element nearestWay = detectWayById(nearestNode.id);
+            OverpassQueryResult.Element nearestWay = detectWayByNodeId(nearestNode.id);
             doWithNearestWay(nearestWay, nearestElementDistance);
         }
     }
@@ -123,24 +123,63 @@ public class OverpassDataSource {
             double latitude,
             double longitude) {
 
-        // Get SortedMap of distance to latlng with ways
+        SortedMap<Float, OverpassQueryResult.Element> nodeSortedMap =
+                getNodeSortedMapByDistanceToPoint(latitude, longitude);
+        SortedMap<Float, OverpassQueryResult.Element> waySortedMap =
+                getWaySortedMap(nodeSortedMap, latitude, longitude, SpeedLimitApp.WAY_MAX_COUNT);
+        return waySortedMap.size() > 0 ? new AbstractMap.SimpleEntry<>(waySortedMap
+                .get(waySortedMap.firstKey()), waySortedMap.firstKey()) : null;
+    }
+
+    private SortedMap<Float, OverpassQueryResult.Element> getWaySortedMap(
+            SortedMap<Float, OverpassQueryResult.Element> nodeSortedMap,
+            double latitude,
+            double longitude,
+            int count) {
+
         SortedMap<Float, OverpassQueryResult.Element> waySortedMap = new TreeMap<>();
+
+        for (Map.Entry<Float, OverpassQueryResult.Element> entry : nodeSortedMap.entrySet()) {
+            float distance = Float.MAX_VALUE;
+            String currentWayId = null;
+            for (Map.Entry<Float, OverpassQueryResult.Element> subEntry : nodeSortedMap.entrySet()) {
+                for (String wayId : entry.getValue().wayIds) {
+                    if (mWays.get(wayId).nodes.contains((subEntry.getValue().id)) &&
+                            subEntry.getKey() < distance && !entry.getKey().equals(subEntry.getKey())) {
+                        distance = subEntry.getKey();
+                        currentWayId = wayId;
+                    }
+                }
+            }
+            if (currentWayId != null) {
+                float wayDistance = LatLngHelper.getDistanceToLine(
+                        latitude,
+                        longitude,
+                        entry.getValue().lat,
+                        entry.getValue().lon,
+                        nodeSortedMap.get(distance).lat,
+                        nodeSortedMap.get(distance).lon);
+                waySortedMap.put(wayDistance, mWays.get(currentWayId));
+            }
+            count--;
+            if (count <= 0) {
+                return waySortedMap;
+            }
+        }
+        return waySortedMap;
+    }
+
+    private SortedMap<Float, OverpassQueryResult.Element> getNodeSortedMapByDistanceToPoint(
+            double latitude,
+            double longitude) {
+
+        SortedMap<Float, OverpassQueryResult.Element> sortedMap = new TreeMap<>();
         for (Map.Entry<String, OverpassQueryResult.Element> element : mNodes.entrySet()) {
             float distance = LatLngHelper.getDistanceBetweenPoints(
                     latitude, longitude, element.getValue().lat, element.getValue().lon);
-            int i = 0;
-            for (OverpassQueryResult.Element way : element.getValue().ways) {
-                waySortedMap.put(distance + 0.000001f * i++, way);
-            }
+            sortedMap.put(distance, element.getValue());
         }
-        for (Float distanceOne : waySortedMap.keySet()) {
-            for (Float distanceTwo : waySortedMap.keySet()) {
-                if (waySortedMap.get(distanceOne).equals(waySortedMap.get(distanceTwo))) {
-                    return new AbstractMap.SimpleEntry<>(waySortedMap.get(distanceOne), distanceOne);
-                }
-            }
-        }
-        return null;
+        return sortedMap;
     }
 
     private Integer getSpeedWithoutUnits(String speed) {
@@ -154,7 +193,7 @@ public class OverpassDataSource {
         return speedInt;
     }
 
-    private OverpassQueryResult.Element detectWayById(String nodeId) {
+    private OverpassQueryResult.Element detectWayByNodeId(String nodeId) {
         for (Map.Entry<String, OverpassQueryResult.Element> element : mWays.entrySet()) {
             for (String node : element.getValue().nodes) {
                 if (node.compareTo(nodeId) == 0) {
@@ -191,10 +230,13 @@ public class OverpassDataSource {
                     }
 
                     for (Map.Entry<String, OverpassQueryResult.Element> element : mNodes.entrySet()) {
-                        if (element.getValue().ways == null) {
-                            element.getValue().ways = new ArrayList<>();
+                        if (element.getValue().wayIds == null) {
+                            element.getValue().wayIds = new ArrayList<>();
                         }
-                        element.getValue().ways.add(detectWayById(element.getKey()));
+                        OverpassQueryResult.Element way = detectWayByNodeId(element.getKey());
+                        if (way != null) {
+                            element.getValue().wayIds.add(way.id);
+                        }
                     }
 
                     Log.d(SpeedLimitApp.APP_NAME,

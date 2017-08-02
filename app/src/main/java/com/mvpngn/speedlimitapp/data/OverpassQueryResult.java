@@ -85,7 +85,7 @@ public class OverpassQueryResult {
 
         }
 
-        public List<Element> ways;
+        public List<String> wayIds;
     }
 }
 

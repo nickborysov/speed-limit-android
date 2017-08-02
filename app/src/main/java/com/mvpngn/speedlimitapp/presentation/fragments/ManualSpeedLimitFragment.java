@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mvpngn.speedlimitapp.R;
+import com.mvpngn.speedlimitapp.SpeedLimitApp;
 
 public class ManualSpeedLimitFragment extends SpeedLimitFragment {
 
@@ -44,7 +45,7 @@ public class ManualSpeedLimitFragment extends SpeedLimitFragment {
         checkButton.requestFocus();
         setSpeedValueNotDetected();
 
-        setLatLng(49.9896234d, 36.250744d);
+        setLatLng(SpeedLimitApp.DEFAULT_LATITUDE, SpeedLimitApp.DEFAULT_LONGITUDE);
     }
 
     public void setOnCheckButtonClickListener(View.OnClickListener onCheckButtonClickListener) {
