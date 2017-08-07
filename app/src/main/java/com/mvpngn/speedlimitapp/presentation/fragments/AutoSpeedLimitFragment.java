@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.mvpngn.speedlimitapp.R;
 
@@ -16,6 +17,8 @@ public class AutoSpeedLimitFragment extends SpeedLimitFragment {
     private Button mUpdateRadiusButton;
 
     private View.OnClickListener mOnUpdateRadiusListener;
+
+    private TextView mSatellitesTextView;
 
     public AutoSpeedLimitFragment() {
     }
@@ -38,6 +41,7 @@ public class AutoSpeedLimitFragment extends SpeedLimitFragment {
         mWayIdTextView = view.findViewById(R.id.auto_speed_way_id_text_view);
         mWayNameTextView = view.findViewById(R.id.auto_speed_way_name_text_view);
         mUpdateTimeTextView = view.findViewById(R.id.auto_speed_updated_text_view);
+        mSatellitesTextView = view.findViewById(R.id.auto_speed_satellites_text_view);
         if (mOnUpdateRadiusListener != null) {
             mUpdateRadiusButton.setOnClickListener(mOnUpdateRadiusListener);
         }
@@ -52,5 +56,9 @@ public class AutoSpeedLimitFragment extends SpeedLimitFragment {
     @Override
     public void setSpeedValueWithInfo(@Nullable String value, @Nullable String wayId, @Nullable String wayName, @Nullable String updateTime) {
         super.setSpeedValueWithInfo(value, wayId, wayName, updateTime);
+    }
+
+    public void setSatellites(String text) {
+        mSatellitesTextView.setText(text);
     }
 }
