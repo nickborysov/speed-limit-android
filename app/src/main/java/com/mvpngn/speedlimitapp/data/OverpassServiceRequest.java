@@ -2,9 +2,9 @@ package com.mvpngn.speedlimitapp.data;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.mvpngn.speedlimitapp.SpeedLimitApp;
 import com.mvpngn.speedlimitapp.utils.LatLngHelper;
-import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.util.Locale;
 
@@ -65,12 +65,16 @@ public class OverpassServiceRequest {
         query.append("[out:json]")
                 .append("[timeout:25]")
                 .append("; (")
-                .append("node[\"maxspeed\"]")
-                .append(coordinates)
-                .append("way[\"maxspeed\"]")
-                .append(coordinates)
-                .append("relation[\"maxspeed\"]")
-                .append(coordinates)
+                .append("way[highway=\"tertiary\"]").append(coordinates)
+                .append("way[highway=\"motorway\"]").append(coordinates)
+                .append("way[highway=\"motorway_link\"]").append(coordinates)
+                .append("way[highway=\"primary\"]").append(coordinates)
+                .append("way[highway=\"secondary\"]").append(coordinates)
+                .append("way[highway=\"unclassified\"]").append(coordinates)
+                .append("way[highway=\"residential\"]").append(coordinates)
+                .append("way[highway=\"service\"]").append(coordinates)
+                .append("way[highway=\"living_street\"]").append(coordinates)
+                .append("way[highway=\"trunk\"]").append(coordinates)
                 .append("); out; >; out skel qt;");
         return query.toString();
     }

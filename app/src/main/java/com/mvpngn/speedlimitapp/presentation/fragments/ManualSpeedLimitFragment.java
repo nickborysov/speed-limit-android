@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mvpngn.speedlimitapp.R;
+import com.mvpngn.speedlimitapp.SpeedLimitApp;
 
 public class ManualSpeedLimitFragment extends SpeedLimitFragment {
 
@@ -34,6 +35,7 @@ public class ManualSpeedLimitFragment extends SpeedLimitFragment {
         mLongitudeTextView = view.findViewById(R.id.manual_speed_lon_edit_text_view);
         mOsmRadiusEditText = view.findViewById(R.id.manual_speed_osm_radius_edit_text);
         mWayIdTextView = view.findViewById(R.id.manual_speed_way_id_text_view);
+        mWayNameTextView = view.findViewById(R.id.manual_speed_way_name_text_view);
         Button checkButton = view.findViewById(R.id.manual_check_button);
 
         if (mOnCheckButtonClickListener != null) {
@@ -43,7 +45,7 @@ public class ManualSpeedLimitFragment extends SpeedLimitFragment {
         checkButton.requestFocus();
         setSpeedValueNotDetected();
 
-        setLatLng(49.9895503389853d, 36.25069940288926d);
+        setLatLng(SpeedLimitApp.DEFAULT_LATITUDE, SpeedLimitApp.DEFAULT_LONGITUDE);
     }
 
     public void setOnCheckButtonClickListener(View.OnClickListener onCheckButtonClickListener) {
@@ -71,7 +73,7 @@ public class ManualSpeedLimitFragment extends SpeedLimitFragment {
     }
 
     @Override
-    public void setSpeedValueWithInfo(@Nullable String value,@Nullable String nodeId) {
-        super.setSpeedValueWithInfo(value, nodeId);
+    public void setSpeedValueWithInfo(@Nullable String value, @Nullable String wayId, @Nullable String wayName) {
+        super.setSpeedValueWithInfo(value, wayId, wayName);
     }
 }
