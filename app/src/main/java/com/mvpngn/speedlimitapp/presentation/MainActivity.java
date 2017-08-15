@@ -22,6 +22,7 @@ import com.mvpngn.speedlimitapp.utils.SystemServicesHelper;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -168,12 +169,21 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
             if (mAutoSpeedLimitFragment != null &&
                     mAutoSpeedLimitFragment.getTag().equals(AutoSpeedLimitFragment.TAG)) {
+                StringBuilder satellitesText = new StringBuilder();
+                if (location.getExtras() != null) {
+                    satellitesText.append(location.getExtras().getInt("satellites"));
+                    if (location.hasAccuracy()) {
+                        satellitesText.append(" | Accuracy: ")
+                                .append(String.format(Locale.US, "%.2f", location.getAccuracy()))
+                                .append(" m");
+                    }
+                    mAutoSpeedLimitFragment.setSatellites(satellitesText.toString());
+                }
                 Log.d(SpeedLimitApp.APP_NAME,
                         "Current location: " + location.getLatitude() + " " + location.getLongitude());
                 mAutoSpeedLimitFragment.setLatLng(location.getLatitude(), location.getLongitude());
